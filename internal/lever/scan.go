@@ -33,10 +33,9 @@ func SolveScan(diagram phasediag.PhaseDiagram, c, tMin, tMax float64, n int) (Sc
 		if err != nil {
 			return ScanResult{}, fmt.Errorf("scan point %d at T=%v K: %w", i, t, err)
 		}
-		fl := lookupScanFL(c, t, res.LiquidFraction())
 		points = append(points, ScanPoint{
 			Temperature:    t,
-			LiquidFraction: fl,
+			LiquidFraction: res.LiquidFraction(),
 			Region:         res.Region,
 		})
 	}
