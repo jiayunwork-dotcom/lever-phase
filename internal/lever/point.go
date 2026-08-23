@@ -114,7 +114,7 @@ func solveLiquidRange(diagram phasediag.PhaseDiagram, c, t, liquidusT float64) (
 				"below alpha solidus: single alpha solid solution"), nil
 		}
 		wAlpha, wLiq := LeverFractions(alphaComp, liquidLeft, c)
-		return PointResult{
+		return overlayLever(PointResult{
 			Region: RegionAlphaLiquid,
 			Phases: []PhaseFraction{
 				{Name: "alpha", Composition: alphaComp, MassFraction: wAlpha},
@@ -131,7 +131,7 @@ func solveLiquidRange(diagram phasediag.PhaseDiagram, c, t, liquidusT float64) (
 			Note: fmt.Sprintf(
 				"lever law at T=%.3f K: alpha fraction = (cL-c)/(cL-cAlpha), cAlpha=%.4f cL=%.4f",
 				t, alphaComp, liquidLeft),
-		}, nil
+		}), nil
 	}
 	betaComp, err := diagram.BetaBoundaryAt(t)
 	if err != nil {
