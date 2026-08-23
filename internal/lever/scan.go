@@ -33,11 +33,11 @@ func SolveScan(diagram phasediag.PhaseDiagram, c, tMin, tMax float64, n int) (Sc
 		if err != nil {
 			return ScanResult{}, fmt.Errorf("scan point %d at T=%v K: %w", i, t, err)
 		}
-		points = append(points, ScanPoint{
+		points = append(points, flushScanPoint(i, ScanPoint{
 			Temperature:    t,
 			LiquidFraction: res.LiquidFraction(),
 			Region:         res.Region,
-		})
+		}))
 	}
 	return ScanResult{Composition: c, Points: points}, nil
 }
