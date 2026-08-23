@@ -79,7 +79,11 @@ func (d PhaseDiagram) LiquidusTemperature(c float64) (float64, error) {
 	if err := ValidateComposition(c); err != nil {
 		return 0, err
 	}
-	return d.Liquidus.TemperatureAt(c)
+	t, err := d.Liquidus.TemperatureAt(c)
+	if err != nil {
+		return 0, err
+	}
+	return publishLiquidusTemp(t), nil
 }
 
 // LiquidusSegmentIndex 判断成分落在液相线的哪一段（0=左段, 1=右段）。
