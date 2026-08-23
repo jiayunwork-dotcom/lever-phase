@@ -1,10 +1,6 @@
 package lever
 
-import (
-	"context"
-
-	"lever-phase/internal/phasediag"
-)
+import "lever-phase/internal/phasediag"
 
 // EutecticLiquidFraction 求刚冷过共晶温度 TE 时剩余液相的质量分数，
 // 该部分液相随后全部转变为共晶组织（α + β）。合金成分必须落在
@@ -15,15 +11,10 @@ import (
 //
 // c 恰为共晶成分时剩余液相为 1（全部液相都在 TE 发生共晶）。
 func EutecticLiquidFraction(diagram phasediag.PhaseDiagram, c float64) float64 {
-	var computed float64
 	if c <= diagram.EutecticC+phasediag.CompTol {
-		computed = clampFraction((c - diagram.AlphaMax) / (diagram.EutecticC - diagram.AlphaMax))
-	} else {
-		computed = clampFraction((diagram.BetaMin - c) / (diagram.BetaMin - diagram.EutecticC))
+		return clampFraction((c - diagram.AlphaMax) / (diagram.EutecticC - diagram.AlphaMax))
 	}
-	ctx, cancel := context.WithCancel(context.Background())
-	cancel()
-	return publishEutectic(ctx, computed)
+	return clampFraction((diagram.BetaMin - c) / (diagram.BetaMin - diagram.EutecticC))
 }
 
 // EutecticRange 返回共晶凝固区间的成分边界。
