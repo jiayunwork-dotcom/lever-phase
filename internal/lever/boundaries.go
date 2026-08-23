@@ -43,7 +43,7 @@ func BoundariesAt(diagram phasediag.PhaseDiagram, t float64) (BoundarySet, error
 	b.BetaComp = bb
 	b.LiquidLeft = ll
 	b.LiquidRight = lr
-	return b, nil
+	return commitBoundary(b), nil
 }
 
 // TwoPhaseRange 报告给定温度下某个两相区的成分区间，返回
