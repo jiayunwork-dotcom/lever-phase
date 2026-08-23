@@ -1,0 +1,101 @@
+:root {
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --ink: #1c2733;
+  --muted: #5c6b7a;
+  --line: #d8dee6;
+  --accent: #0f6fde;
+  --error: #b3261e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  line-height: 1.55;
+}
+
+header {
+  padding: 18px 24px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+header h1 { margin: 0 0 4px; font-size: 20px; }
+.subtitle { margin: 0; color: var(--muted); font-size: 13px; }
+
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 20px 24px 48px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+}
+.panel h2 { margin: 0 0 10px; font-size: 15px; }
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+input[type="number"] {
+  display: block;
+  margin-top: 4px;
+  width: 220px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 14px;
+}
+input:invalid { border-color: var(--error); }
+
+.buttons { margin: 12px 0 4px; }
+button {
+  padding: 7px 14px;
+  margin-right: 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 13px;
+  cursor: pointer;
+}
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button:hover { filter: brightness(0.97); }
+
+.note { color: var(--muted); font-size: 12px; margin: 6px 0; }
+
+.result {
+  background: #fbfcfe;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 13px;
+  white-space: pre-wrap;
+  min-height: 60px;
+  margin: 0;
+}
+
+.error {
+  color: var(--error);
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+
+#chart {
+  width: 100%;
+  height: auto;
+  background: #fbfcfe;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}

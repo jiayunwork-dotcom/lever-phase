@@ -1,0 +1,6 @@
+{
+  "label": "Pb-60Sn alloy in the alpha + liquid two-phase region",
+  "c": 0.6,
+  "t": 458.0,
+  "note": "60 wt% Sn at 458 K: between TE=456 K and the liquidus, so it is inside the alpha + liquid two-phase region; the liquid fraction must match the lever rule closed form (c - cAlpha)/(cL - cAlpha)."
+}

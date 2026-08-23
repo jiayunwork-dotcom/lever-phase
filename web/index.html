@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lever-phase — 二元合金杠杆定律核算</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>lever-phase 二元合金杠杆定律核算</h1>
+  <p class="subtitle">Pb–Sn 型固溶 + 共晶简化相图；成分为质量分数，温度为开尔文。结果全部来自后端求解。</p>
+</header>
+
+<main>
+  <section class="panel inputs">
+    <h2>合金状态</h2>
+    <label>合金成分 c（Sn 质量分数 0～1）
+      <input id="comp" type="number" step="0.01" min="0" max="1" value="0.6">
+    </label>
+    <label>温度 T（K，≥ 0）
+      <input id="temp" type="number" step="1" min="0" value="458">
+    </label>
+    <div class="buttons">
+      <button id="load-example">加载示例 example/alloy-60.json</button>
+      <button id="compute" class="primary">点计算（/api/point）</button>
+      <button id="scan">温度扫描（/api/scan）</button>
+    </div>
+    <p id="example-note" class="note"></p>
+  </section>
+
+  <section class="panel">
+    <h2>核算结果</h2>
+    <pre id="result" class="result">尚未计算。</pre>
+    <p id="error" class="error"></p>
+  </section>
+
+  <section class="panel">
+    <h2>液相分数 f<sub>L</sub>(T)</h2>
+    <p class="note">点列来自 POST /api/scan（固定当前成分 c，扫描温度），由后端求解逐点给出。</p>
+    <svg id="chart" viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg"></svg>
+    <p id="scan-meta" class="note"></p>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
