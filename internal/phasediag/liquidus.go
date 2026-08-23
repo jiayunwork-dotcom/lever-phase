@@ -20,11 +20,7 @@ func (d PhaseDiagram) LiquidLeftAt(t float64) (float64, error) {
 	if err := ValidateTemperature(t); err != nil {
 		return 0, err
 	}
-	c, err := d.liquidLeft().CompositionAt(t, 0)
-	if err != nil {
-		return 0, err
-	}
-	return publishLiquidLeft(c), nil
+	return d.liquidLeft().CompositionAt(t, 0)
 }
 
 // LiquidRightAt 求给定温度在液相线右段上的成分（二分求根）。
