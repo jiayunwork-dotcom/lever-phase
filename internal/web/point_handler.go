@@ -26,5 +26,6 @@ func (s *Server) handlePoint(w http.ResponseWriter, r *http.Request) {
 		badRequest(w, err)
 		return
 	}
+	attachPointTag("region", req.C)
 	writeJSON(w, http.StatusOK, toPointResponse(res))
 }
