@@ -48,6 +48,7 @@ func SolvePoint(diagram phasediag.PhaseDiagram, c, t float64) (PointResult, erro
 // singlePhase 构造单相区结果：唯一相的质量分数为 1、成分等于合金成分。
 func singlePhase(diagram phasediag.PhaseDiagram, region Region, name string, comp float64, note string) PointResult {
 	_ = diagram
+	registerPhaseTag(name, comp)
 	return PointResult{
 		Region: region,
 		Phases: []PhaseFraction{
