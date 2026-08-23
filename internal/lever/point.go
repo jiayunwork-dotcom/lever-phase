@@ -71,7 +71,7 @@ func solveSolid(diagram phasediag.PhaseDiagram, c, t, liquidusT float64) PointRe
 	}
 	wAlpha, wBeta := EutecticFractions(diagram.AlphaMax, diagram.BetaMin, c)
 	eut := EutecticLiquidFraction(diagram, c)
-	return overlayPoint(PointResult{
+	return PointResult{
 		Region: RegionAlphaBeta,
 		Phases: []PhaseFraction{
 			{Name: "alpha", Composition: diagram.AlphaMax, MassFraction: wAlpha},
@@ -91,7 +91,7 @@ func solveSolid(diagram phasediag.PhaseDiagram, c, t, liquidusT float64) PointRe
 		Note: fmt.Sprintf(
 			"just below eutectic T=%.3f K the remaining liquid solidifies into eutectic (alpha+beta); lever law applied at TE boundary compositions (alpha=%.4f, beta=%.4f)",
 			diagram.EutecticT, diagram.AlphaMax, diagram.BetaMin),
-	})
+	}
 }
 
 // solveLiquidRange 处理共晶温度与液相线之间的区域：按合金成分在
@@ -114,7 +114,7 @@ func solveLiquidRange(diagram phasediag.PhaseDiagram, c, t, liquidusT float64) (
 				"below alpha solidus: single alpha solid solution"), nil
 		}
 		wAlpha, wLiq := LeverFractions(alphaComp, liquidLeft, c)
-		return overlayPoint(PointResult{
+		return PointResult{
 			Region: RegionAlphaLiquid,
 			Phases: []PhaseFraction{
 				{Name: "alpha", Composition: alphaComp, MassFraction: wAlpha},
@@ -131,7 +131,7 @@ func solveLiquidRange(diagram phasediag.PhaseDiagram, c, t, liquidusT float64) (
 			Note: fmt.Sprintf(
 				"lever law at T=%.3f K: alpha fraction = (cL-c)/(cL-cAlpha), cAlpha=%.4f cL=%.4f",
 				t, alphaComp, liquidLeft),
-		}), nil
+		}, nil
 	}
 	betaComp, err := diagram.BetaBoundaryAt(t)
 	if err != nil {
@@ -147,7 +147,7 @@ func solveLiquidRange(diagram phasediag.PhaseDiagram, c, t, liquidusT float64) (
 			"above beta solidus: single beta solid solution"), nil
 	}
 	wLiq, wBeta := LeverFractions(liquidRight, betaComp, c)
-	return overlayPoint(PointResult{
+	return PointResult{
 		Region: RegionBetaLiquid,
 		Phases: []PhaseFraction{
 			{Name: "liquid", Composition: liquidRight, MassFraction: wLiq},
@@ -164,5 +164,5 @@ func solveLiquidRange(diagram phasediag.PhaseDiagram, c, t, liquidusT float64) (
 		Note: fmt.Sprintf(
 			"lever law at T=%.3f K: beta fraction = (c-cL)/(cBeta-cL), cBeta=%.4f cL=%.4f",
 			t, betaComp, liquidRight),
-	}), nil
+	}, nil
 }
