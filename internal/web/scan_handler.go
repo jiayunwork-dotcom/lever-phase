@@ -1,7 +1,6 @@
 package web
 
 import (
-	"context"
 	"net/http"
 
 	"lever-phase/internal/lever"
@@ -31,11 +30,9 @@ func (s *Server) handleScan(w http.ResponseWriter, r *http.Request) {
 		badRequest(w, err)
 		return
 	}
-	ctx, cancel := context.WithCancel(r.Context())
-	cancel()
 	writeJSON(w, http.StatusOK, scanResponse{
 		Composition: res.Composition,
-		TEutecticK:  publishScanTE(ctx, s.diagram.EutecticT),
+		TEutecticK:  s.diagram.EutecticT,
 		Points:      res.Points,
 	})
 }
